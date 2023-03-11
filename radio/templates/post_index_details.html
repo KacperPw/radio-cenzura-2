@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+<body>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card p-0 overflow-auto">
+        <h1 class="card-title d-flex justify-content-center pb-3">{{ post_index.title }}</h1>
+        <img src="{{ post_index.post_index_img.url }}" alt="{{ post.title }}">
+        <div class="card-body">
+          
+          <p class="card-text">{{ post_index.content }}</p>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+
+
+
+
+</div>
+
+<div class="mt-auto">
+  <footer class="bg-light text-center text-lg-start sticky-bottom mt-5">
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      Radio:
+      <a class="text-dark" href="https://mdbootstrap.com/">Wolne Radio</a>
+    </div>
+  </footer>
+  </div>
+
+
+</div>
+</body>
+
+<style>
+  /* zmiana stylu stopki na małych ekranach */
+  @media (max-width: 767px) {
+    .sticky-bottom {
+      position: sticky;
+      bottom: 0;
+      width: 100%;
+      margin-top: 50px;
+      margin-bottom: 0;
+      padding-top: -50px;
+      padding-bottom: 0px;
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+    @media (max-width: 767px) {
+      .card img {
+        max-width: 100%;
+      }
+    }
+    
+  }
+</style>
+
+
+{% endblock %}

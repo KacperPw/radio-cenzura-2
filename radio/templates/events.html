@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{%block content%}
+<div class="table-responsive table-bordered">
+<table class="table" >
+    <thead>
+        <tr>
+            <th scope="col">Nazwa</th>
+            <th scope="col">Gdzie?</th>
+            <th scope="col">Kiedy?</th>
+            <th scope="col">O Której?</th>
+            <th scope="col">Kup Bilet!</th>
+            <th scope="col">Link Do Wydarzenia</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for event in events %}
+        <tr>
+            <td>{{ event.title }}</td>
+            <td>{{ event.location }}</td>
+            <td>{{ event.event_date }}</td>
+            <td>{{ event.time}}</td>
+            <td>{% if event.ticket_status %}
+                <a href="{{ event.ticket_url }}" class="btn btn-primary btn-outline-dark active" style="background-color: white; color: black;"
+                onmouseover="this.style.backgroundColor='black'; this.style.color='white';"
+                onmouseout="this.style.backgroundColor='transparent'; this.style.color='black';">Kup Bilet!</a>
+                {% else %}
+                Brak Biletu
+                {% endif %}
+            </td>
+            <td>
+                {% if event.link_status %}
+                <a href="{{ event.link_urkl }}" class="btn btn-primary btn-outline-dark active" style="background-color: white; color: black;"
+                onmouseover="this.style.backgroundColor='black'; this.style.color='white';"
+                onmouseout="this.style.backgroundColor='transparent'; this.style.color='black';">Link Do Strony!</a>
+                {% else %}
+                Brak Biletu
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock content %}

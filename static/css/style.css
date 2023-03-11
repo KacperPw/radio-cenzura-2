@@ -1,0 +1,17 @@
+/* style.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+  }
+  
+  h1 {
+    font-size: 36px;
+    color: #333;
+    margin-top: 50px;
+  }
+  
+  /* img {
+    max-width: 100%;
+    height: auto;
+  } */

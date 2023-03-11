@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+<head>
+    <style>
+      #audio-player {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 20rem;
+    background-color: #f5f5f5;
+    padding: 10px;
+  }
+  </style>
+</head>
+<body>
+{% block content %}
+  <div class="container mt-5">
+    {% for post in page_obj %}
+      <div class="row main-row    p-20" style="margin-bottom: 6em;">
+        <div class="col-lg-4 col-md-12 col-sm-12">
+          
+            <div class="blog-img">
+              <img src="{{ post.post_index_img.url }}" alt="{{ post.title }}">
+            </div>
+            <!-- <div class="row">
+              <div class="col-sm-12 mb-2">
+                <ul class="list-group list-group-horizontal">
+                  <a href="https://www.facebook.com/RadioCenzura"><li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" color="	#1876f3" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg></li></a>
+                  <a href="https://www.facebook.com/RadioCenzura"><li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" color="red" width="16" height="16" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16"><path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/></svg></li></a>
+                  
+                </ul>
+              </div>
+            </div> -->
+            
+          </div>
+          <div class="col-lg-8 col-md-12 col-sm-12" >
+            <div class="blog-title">
+              <h2 class="card-title">{{ post.title }}</h2>
+            </div>
+            <div class="blog-date">
+              <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on }}</p>
+            </div>
+            <div class="blog-desc">
+              <p class="card-text">{{ post.content|slice:":200" }}</p>
+            </div>
+            <div class="blog-read-more">
+              <a href="{% url 'post_index_details' post.id %}" class="btn btn-primary">Więcej</a>
+              
+            </div>
+            
+            
+          </div>
+          
+          
+          
+      </div>
+      {% endfor %}
+
+      <!-- <div class="col-md-4">
+        
+        <h2>Categories</h2>
+        
+        <ul class="list-group">
+          {% for category in categories %}
+            <li class="list-group-item"><a href="{% url 'subcategories' category_slug=category.slug %}">{{ category.name }}</a></li>
+          {% endfor %}
+        </ul>
+
+      </div> -->
+
+      
+
+
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          {% if page_obj.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Poprzednia</span>
+            </a>
+          </li>
+          {% endif %}
+          {% for num in page_obj.paginator.page_range %}
+          {% if page_obj.number == num %}
+          <li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
+          {% else %}
+          <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+          {% endif %}
+          {% endfor %}
+          {% if page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Następna</span>
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+      
+      
+      
+    
+
+
+    <div class="mt-auto">
+      <footer class="bg-light text-center text-lg-start">
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+          Radio:
+          <a class="text-dark" href="https://mdbootstrap.com/">Wolne Radio</a>
+        </div>
+        <!-- Copyright -->
+      </footer>
+    </div>
+
+  </div>
+
+
+
+
+
+  <div class="fixed-bottom">
+    <audio controls>
+
+      <source style="width:500px;height:32px" src="http://91.121.222.81:8234/index.htmlonie" type="audio/mpeg">
+      <img src="{% static 'img/logo.png' %}" alt="Logo" width="200" height="70">
+
+      Twoja przeglądarka nie obsługuje elementu audio.
+    </audio>
+  </div>
+
+
+{% endblock %}
+</body>
